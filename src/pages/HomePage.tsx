@@ -90,7 +90,7 @@ const HomePage = () => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+                onClick={() => window.open('https://wa.me/9398952819', '_blank')}
                 className="flex items-center space-x-2 bg-green-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-green-600 transition-all font-medium text-sm sm:text-base lg:text-lg w-full sm:w-auto justify-center"
               >
                 <MessageCircle className="w-5 h-5" />
