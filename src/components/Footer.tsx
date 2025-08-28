@@ -48,7 +48,7 @@ const Footer = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+              onClick={() => window.open('https://wa.me/919398952819', '_blank')}
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors text-sm"
             >
               <MessageCircle className="w-4 h-4" />
@@ -78,15 +78,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2 text-gray-600">
                 <Mail className="w-4 h-4 text-blue-600" />
-                <span className="text-sm">hello@igniks.com</span>
+                <span className="text-sm">contact@igniks.com</span>
               </div>
               <div className="flex items-center space-x-2 text-gray-600">
                 <Phone className="w-4 h-4 text-blue-600" />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">+91 9398952819</span>
               </div>
               <div className="flex items-start space-x-2 text-gray-600">
                 <MapPin className="w-4 h-4 text-blue-600 mt-0.5" />
-                <span className="text-sm">Mumbai, Maharashtra, India</span>
+                <span className="text-sm">Hyderabad, Telangana, India</span>
               </div>
             </div>
           </div>

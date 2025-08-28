@@ -4,11 +4,11 @@ import { useInView } from 'react-intersection-observer';
 import { 
   Mail, 
   Phone, 
-  MapPin, 
   MessageCircle, 
   Send,
   Clock,
-  CheckCircle
+  CheckCircle,
+  AlertCircle
 } from 'lucide-react';
 
 const ContactPage = () => {
@@ -22,6 +22,7 @@ const ContactPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -31,39 +32,62 @@ const ContactPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setErrorMessage("");
+
+    try {
+      const formPayload = new FormData();
+      formPayload.append("access_key", "dde0e878-b1e1-48a8-bfb0-c2cd16520642"); // 🔑 Replace with your Web3Forms access key
+      formPayload.append("name", formData.name);
+      formPayload.append("email", formData.email);
+      formPayload.append("businessName", formData.businessName);
+      formPayload.append("message", formData.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formPayload
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", businessName: "", message: "" });
+
+        // Hide success message after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        setIsSubmitting(false);
+        setErrorMessage(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', businessName: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1000);
+      setErrorMessage("Failed to send message. Please try again later.");
+    }
   };
 
   const contactInfo = [
     {
       icon: Phone,
       title: 'Phone',
-      details: '+91 98765 43210',
+      details: '+91 9398952819',
       description: 'Call us for immediate assistance',
-      action: () => window.open('tel:+919876543210')
+      action: () => window.open('tel:+919398952819')
     },
     {
       icon: Mail,
       title: 'Email',
-      details: 'hello@igniks.com',
+      details: 'contact@igniks.com',
       description: 'Send us your queries anytime',
-      action: () => window.open('mailto:hello@igniks.com')
+      action: () => window.open('mailto:contact@igniks.com')
     },
     {
       icon: MessageCircle,
       title: 'WhatsApp',
       details: 'Quick Chat',
       description: 'Get instant responses',
-      action: () => window.open('https://wa.me/919876543210')
+      action: () => window.open('https://wa.me/919398952819')
     },
   ];
 
@@ -175,6 +199,7 @@ const ContactPage = () => {
                 Send Us a Message
               </h3>
 
+              {/* Success Message */}
               {isSubmitted && (
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
@@ -182,7 +207,21 @@ const ContactPage = () => {
                   className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center space-x-3"
                 >
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm sm:text-base text-green-800">Message sent successfully! We'll get back to you soon.</span>
+                  <span className="text-sm sm:text-base text-green-800">
+                    Message sent successfully! We'll get back to you soon.
+                  </span>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {errorMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center space-x-3"
+                >
+                  <AlertCircle className="w-5 h-5 text-red-600" />
+                  <span className="text-sm sm:text-base text-red-800">{errorMessage}</span>
                 </motion.div>
               )}
 
