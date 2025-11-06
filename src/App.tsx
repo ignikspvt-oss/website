@@ -25,6 +25,7 @@ function App() {
             <Route path="/industries" element={<IndustriesPage />} />
             <Route path="/packages" element={<PackagesPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy-page" element={<PrivacyPage />} />
           </Routes>
         </main>
         <Footer />
