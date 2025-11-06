@@ -9,6 +9,7 @@ import ServicesPage from './pages/ServicesPage';
 import IndustriesPage from './pages/IndustriesPage';
 import PackagesPage from './pages/PackagesPage';
 import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
 import './App.css';
 
 function App() {
