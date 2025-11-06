@@ -21,6 +21,7 @@ const Footer = () => {
     { name: 'Industries', path: '/industries' },
     { name: 'Packages', path: '/packages' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Privacy Policy', path: '/privacy-page' },
   ];
 
   const socialLinks = [
